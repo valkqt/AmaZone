@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmaZone", "AmaZone.csproj", "{F719D24B-3415-42C8-B3BC-49F8DF5010BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F719D24B-3415-42C8-B3BC-49F8DF5010BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F719D24B-3415-42C8-B3BC-49F8DF5010BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F719D24B-3415-42C8-B3BC-49F8DF5010BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F719D24B-3415-42C8-B3BC-49F8DF5010BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D591AFC1-5D68-4406-9773-94E3251FCBD3}
+	EndGlobalSection
+EndGlobal
