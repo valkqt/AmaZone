@@ -1,0 +1,35 @@
+﻿@model AmaZone.Models.Order
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+<p>@TempData["pepe"]</p>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.LabelFor(m => m.destination)
+    @Html.EditorFor(m => m.destination, new { htmlAttributes = new { @class = $"form-control {(ViewData.ModelState.IsValidField("destination") ? "" : "is-invalid")}" } })
+    @Html.ValidationMessageFor(m => m.destination, null, new { @class = "invalid-feedback" })
+
+
+    @Html.LabelFor(m => m.address)
+    @Html.EditorFor(m => m.address, new { htmlAttributes = new { @class = $"form-control {(ViewData.ModelState.IsValidField("freight") ? "" : "is-invalid")}" } })
+    @Html.ValidationMessageFor(m => m.address, null, new { @class = "invalid-feedback" })
+
+
+    @Html.LabelFor(m => m.recipientName)
+    @Html.EditorFor(m => m.recipientName, new { htmlAttributes = new { @class = $"form-control {(ViewData.ModelState.IsValidField("freight") ? "" : "is-invalid")}" } })
+    @Html.ValidationMessageFor(m => m.recipientName, null, new { @class = "invalid-feedback" })
+
+
+    @Html.LabelFor(m => m.arrivalDate)
+    @Html.EditorFor(m => m.arrivalDate, new { htmlAttributes = new { @class = $"form-control {(ViewData.ModelState.IsValidField("freight") ? "" : "is-invalid")}" } })
+    @Html.ValidationMessageFor(m => m.arrivalDate, null, new { @class = "invalid-feedback" })
+
+
+    <button type="submit">Submit</button>
+
+}
+

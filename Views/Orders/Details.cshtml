@@ -1,0 +1,80 @@
+﻿@model AmaZone.Models.OrderDetails
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details for @Model.order.idString </h2>
+<p>@TempData["pepe"]</p>
+
+<ul class="list-group">
+    <li class="list-group-item">Destination: @Model.order.destination</li>
+    <li class="list-group-item">Address: @Model.order.address</li>
+    <li class="list-group-item">Recipient Name: @Model.order.recipientName</li>
+    <li class="list-group-item">Shipping Date: @Model.order.shippingDate</li>
+    <li class="list-group-item">Arrival Date: @Model.order.arrivalDate</li>
+    <li class="list-group-item">Freight: @Model.order.freight</li>
+    <li class="list-group-item">
+        <span>State: @Model.history.OrderByDescending(elem => elem.timestamp).First().state</span>
+        @if (User.IsInRole("admin"))
+        {
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Launch demo modal
+            </button>
+        }
+        
+    </li>
+</ul>
+
+<div>
+    <h2>Shipping Status History</h2>
+
+</div>
+@foreach (AmaZone.Models.OrderState elem in Model.history.OrderByDescending(elem => elem.timestamp))
+{
+
+    <ul class="list-group">
+        <li class="list-group-item">State: @elem.state</li>
+        <li class="list-group-item">Created at: @elem.timestamp</li>
+        <li class="list-group-item">Location: @elem.location</li>
+        <li class="list-group-item">Description: @elem.description</li>
+    </ul>
+    <hr />
+}
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Shipping State</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @using (@Html.BeginForm())
+            {
+                <div class="modal-body">
+
+                    @Html.HiddenFor(m => m.state.idString, new { Value = Model.order.idString })
+
+                    @Html.LabelFor(m => m.state.state)
+                    @Html.DropDownListFor(model => model.state.state, new SelectList(Model.state.stateList, "Value", "Text"), new { @class = $"form-select" }))
+                    @Html.ValidationMessageFor(m => m.state.state, null, new { @class = "invalid-feedback" })
+
+                    @Html.LabelFor(m => m.state.location)
+                    @Html.EditorFor(m => m.state.location, new { htmlAttributes = new { @class = $"form-control {(ViewData.ModelState.IsValidField("location") ? "" : "is-invalid")}" } })
+                    @Html.ValidationMessageFor(m => m.state.state, null, new { @class = "invalid-feedback" })
+
+                    @Html.LabelFor(m => m.state.description)
+                    @Html.EditorFor(m => m.state.description, new { htmlAttributes = new { @class = $"form-control {(ViewData.ModelState.IsValidField("description") ? "" : "is-invalid")}" } })
+                    @Html.ValidationMessageFor(m => m.state.state, null, new { @class = "invalid-feedback" })
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" Close></button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

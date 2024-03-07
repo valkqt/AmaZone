@@ -1,0 +1,49 @@
+﻿@model List<AmaZone.Models.Order>
+@{
+    ViewBag.Title = "Me";
+}
+<div class="text-center">
+    <h2>My Orders</h2>
+    @Html.ActionLink("New Order", "Add", "Orders", new { area = "" }, new { @class = "btn btn-warning" })
+
+</div>
+
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Client</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Address</th>
+            <th scope="col">Shipping Date</th>
+            <th scope="col">Arrival Date</th>
+            <th scope="col">Freight</th>
+            <th scope="col">Recipient Name</th>
+            <th scope="col">State</th>
+
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AmaZone.Models.Order order in Model)
+        {
+            <tr class="ClickableRow" onclick="location.href = '@(Url.Action("Details", "Orders", new { id = order.idString }))'">
+                <th scope="row">@order.idString</th>
+                <td>@order.client</td>
+                <td>@order.destination</td>
+                <td>@order.address</td>
+                <td>@order.shippingDate</td>
+                <td>@order.arrivalDate</td>
+                <td>@order.freight</td>
+                <td>@order.recipientName</td>
+                <td>@order.state</td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+

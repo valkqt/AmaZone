@@ -1,7 +1,19 @@
-﻿
+﻿@model AmaZone.Models.User
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Login</h2>
-@Html.BeginForm()
+@using (Html.BeginForm())
+{
+
+    @Html.LabelFor(m => m.username);
+    @Html.TextBoxFor(m => m.username);
+
+    @Html.LabelFor(m => m.password);
+    @Html.TextBoxFor(m => m.password);
+    <input type="submit" />
+
+
+}
+

@@ -2,7 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<main>
-    <p>sono home</p>
-    @Html.ActionLink("vai all'area riservata","Riservato")
+<main class="text-center">
+    <h1>Welcome to Amazone!</h1>
+    <p>Per iniziare a fare uso dei nostri servizi è necessario registrarsi ed effettuare il login</p>
+    @Html.ActionLink("Registrati ora", "Register", "Home", new { area = "" }, new { @class = "btn btn-warning" })
+
+    <p>Sei già registrato?</p>
+    @Html.ActionLink("Effettua il Login", "Index", "Login", new { area = "" }, new { @class = "btn btn-warning" })
+
 </main>

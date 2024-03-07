@@ -16,7 +16,7 @@ namespace AmaZone
         static Random rd = new Random();
         public static string CreateString(int stringLength)
         {
-            const string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789!@$?_-";
+            const string allowedChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz0123456789";
             char[] chars = new char[stringLength];
 
             for (int i = 0; i < stringLength; i++)
