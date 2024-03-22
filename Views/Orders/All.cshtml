@@ -4,8 +4,7 @@
 }
 <div>
     <h2>All Orders</h2>
-    <button id="jquerylol">Today's orders</button>
-    <ul class=".ListaUtentiUL"></ul>
+    <ul id="TodaysOrders"></ul>
 </div>
 
 <table class="table table-hover">
@@ -46,4 +45,20 @@
     </tbody>
 </table>
 
- 
+@section scripts {
+    <script type="text/javascript">
+        const ul = document.getElementById("TodaysOrders")
+
+        async function FetchOrders() {
+            const response = await fetch("/Orders/GetTodaysOrders")
+            const data = await response.json();
+            for (elem of data) {
+                const li = document.createElement("li")
+                li.innerText = elem.idString
+                ul.appendChild(li)
+            }
+        }
+        FetchOrders();
+    </script>
+}
+

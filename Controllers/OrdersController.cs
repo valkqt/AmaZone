@@ -72,7 +72,8 @@ namespace AmaZone.Controllers
 
             try
             {
-                if (Request.Cookies["user"] != null) {
+                if (Request.Cookies["user"] != null)
+                {
                     string name = Request.Cookies["user"].Value;
                     con.Open();
                     SqlCommand select = new SqlCommand("select Users.name, Orders.* from (Orders " +
@@ -103,7 +104,7 @@ namespace AmaZone.Controllers
                         return View(orders);
                     }
 
-                } 
+                }
 
             }
             catch (Exception ex)
@@ -237,18 +238,18 @@ namespace AmaZone.Controllers
         public JsonResult GetTodaysOrders()
         {
             SqlConnection con = new SqlConnection(connectionString);
-
+            con.Open();
             List<Order> orders = new List<Order>();
 
-            SqlCommand select = new SqlCommand("select * from Orders where shippingDate = GETDATE()", con);
+            SqlCommand select = new SqlCommand($"select * from Orders where shippingDate = '{DateTime.Now.Date.ToString("yyyy-MM-dd")}'", con);
             SqlDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
                 Order order = new Order();
-                order.idString = reader["idString"].ToString();
+                order.idString = reader["id"].ToString();
                 orders.Add(order);
             }
-
+            con.Close();
             return Json(orders, JsonRequestBehavior.AllowGet);
         }
 
